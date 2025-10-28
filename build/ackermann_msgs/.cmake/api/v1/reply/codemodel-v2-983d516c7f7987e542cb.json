@@ -1,0 +1,233 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-316b27d9d9e738807df6.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17
+					]
+				},
+				{
+					"build" : "ackermann_msgs__py",
+					"jsonFile" : "directory-ackermann_msgs__py-44928601c77cdb0a3453.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "/home/ros2/assignment/build/ackermann_msgs/ackermann_msgs__py",
+					"targetIndexes" : 
+					[
+						2
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1
+					],
+					"name" : "ackermann_msgs",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ackermann_msgs::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ackermann_msgs-f78e9034c06e9040894a.json",
+					"name" : "ackermann_msgs",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ackermann_msgs__cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ackermann_msgs__cpp-58ec20ada74f30982d3a.json",
+					"name" : "ackermann_msgs__cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ackermann_msgs__py::@a3899d43b8ac795da14e",
+					"jsonFile" : "target-ackermann_msgs__py-703a42d34ad6e980ccf6.json",
+					"name" : "ackermann_msgs__py",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ackermann_msgs__rosidl_generator_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ackermann_msgs__rosidl_generator_c-089b3a778aabff8087eb.json",
+					"name" : "ackermann_msgs__rosidl_generator_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ackermann_msgs__rosidl_generator_py::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ackermann_msgs__rosidl_generator_py-afe63646cf86a8a38b77.json",
+					"name" : "ackermann_msgs__rosidl_generator_py",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ackermann_msgs__rosidl_typesupport_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ackermann_msgs__rosidl_typesupport_c-63a93e01a19232d3122d.json",
+					"name" : "ackermann_msgs__rosidl_typesupport_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ackermann_msgs__rosidl_typesupport_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ackermann_msgs__rosidl_typesupport_c__pyext-e45d70154dfbf61aab43.json",
+					"name" : "ackermann_msgs__rosidl_typesupport_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ackermann_msgs__rosidl_typesupport_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ackermann_msgs__rosidl_typesupport_cpp-0d8e698836144bd19f33.json",
+					"name" : "ackermann_msgs__rosidl_typesupport_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ackermann_msgs__rosidl_typesupport_fastrtps_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ackermann_msgs__rosidl_typesupport_fastrtps_c-7d7bcbaacffcd7739017.json",
+					"name" : "ackermann_msgs__rosidl_typesupport_fastrtps_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ackermann_msgs__rosidl_typesupport_fastrtps_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ackermann_msgs__rosidl_typesupport_fastrtps_c__pyext-496918c25eb4c538c1d6.json",
+					"name" : "ackermann_msgs__rosidl_typesupport_fastrtps_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ackermann_msgs__rosidl_typesupport_fastrtps_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ackermann_msgs__rosidl_typesupport_fastrtps_cpp-23967b20d85eb1ed4ed8.json",
+					"name" : "ackermann_msgs__rosidl_typesupport_fastrtps_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ackermann_msgs__rosidl_typesupport_introspection_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ackermann_msgs__rosidl_typesupport_introspection_c-1df595ba14126b75b7d6.json",
+					"name" : "ackermann_msgs__rosidl_typesupport_introspection_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ackermann_msgs__rosidl_typesupport_introspection_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ackermann_msgs__rosidl_typesupport_introspection_c__pyext-028ac59da72c9627b4f4.json",
+					"name" : "ackermann_msgs__rosidl_typesupport_introspection_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ackermann_msgs__rosidl_typesupport_introspection_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ackermann_msgs__rosidl_typesupport_introspection_cpp-036dc4d962fc65a5bc1f.json",
+					"name" : "ackermann_msgs__rosidl_typesupport_introspection_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ackermann_msgs_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ackermann_msgs_uninstall-460e0481174fd52af967.json",
+					"name" : "ackermann_msgs_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_build_ackermann_msgs_egg::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_build_ackermann_msgs_egg-de56fb6eaca83c38f9ab.json",
+					"name" : "ament_cmake_python_build_ackermann_msgs_egg",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_copy_ackermann_msgs::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_copy_ackermann_msgs-6a78175e0c3e67c879ba.json",
+					"name" : "ament_cmake_python_copy_ackermann_msgs",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-10141897b5ee8bd00ffb.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/ros2/assignment/build/ackermann_msgs",
+		"source" : "/home/ros2/assignment/src/ackermann_msgs"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

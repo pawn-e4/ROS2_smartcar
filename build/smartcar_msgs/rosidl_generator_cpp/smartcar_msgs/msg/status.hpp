@@ -7,5 +7,6 @@
 #include "smartcar_msgs/msg/detail/status__struct.hpp"
 #include "smartcar_msgs/msg/detail/status__builder.hpp"
 #include "smartcar_msgs/msg/detail/status__traits.hpp"
+#include "smartcar_msgs/msg/detail/status__type_support.hpp"
 
 #endif  // SMARTCAR_MSGS__MSG__STATUS_HPP_

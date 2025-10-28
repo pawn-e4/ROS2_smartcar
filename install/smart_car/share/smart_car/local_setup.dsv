@@ -1,1 +1,2 @@
-/home/ros2/assignment/build/smart_car/ament_cmake_environment_hooks/local_setup.dsv
+source;share/smart_car/environment/ament_prefix_path.sh
+source;share/smart_car/environment/path.sh

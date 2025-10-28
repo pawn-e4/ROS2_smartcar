@@ -67,7 +67,7 @@ cdr_deserialize(
   cdr >> ros_message.engine_speed_rpm;
 
   return true;
-}
+}  // NOLINT(readability/fn_size)
 
 size_t
 ROSIDL_TYPESUPPORT_FASTRTPS_CPP_PUBLIC_smartcar_msgs

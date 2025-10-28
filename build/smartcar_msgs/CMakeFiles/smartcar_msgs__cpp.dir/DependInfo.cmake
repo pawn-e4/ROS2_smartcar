@@ -15,6 +15,7 @@ set(CMAKE_MULTIPLE_OUTPUT_PAIRS
   "/home/ros2/assignment/build/smartcar_msgs/rosidl_generator_cpp/smartcar_msgs/msg/detail/status__builder.hpp" "/home/ros2/assignment/build/smartcar_msgs/rosidl_generator_cpp/smartcar_msgs/msg/status.hpp"
   "/home/ros2/assignment/build/smartcar_msgs/rosidl_generator_cpp/smartcar_msgs/msg/detail/status__struct.hpp" "/home/ros2/assignment/build/smartcar_msgs/rosidl_generator_cpp/smartcar_msgs/msg/status.hpp"
   "/home/ros2/assignment/build/smartcar_msgs/rosidl_generator_cpp/smartcar_msgs/msg/detail/status__traits.hpp" "/home/ros2/assignment/build/smartcar_msgs/rosidl_generator_cpp/smartcar_msgs/msg/status.hpp"
+  "/home/ros2/assignment/build/smartcar_msgs/rosidl_generator_cpp/smartcar_msgs/msg/detail/status__type_support.hpp" "/home/ros2/assignment/build/smartcar_msgs/rosidl_generator_cpp/smartcar_msgs/msg/status.hpp"
   )
 
 

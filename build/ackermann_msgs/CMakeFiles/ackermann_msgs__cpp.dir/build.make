@@ -70,10 +70,13 @@ CMakeFiles/ackermann_msgs__cpp: rosidl_generator_cpp/ackermann_msgs/msg/ackerman
 CMakeFiles/ackermann_msgs__cpp: rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive__builder.hpp
 CMakeFiles/ackermann_msgs__cpp: rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive__struct.hpp
 CMakeFiles/ackermann_msgs__cpp: rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive__traits.hpp
+CMakeFiles/ackermann_msgs__cpp: rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive__type_support.hpp
 CMakeFiles/ackermann_msgs__cpp: rosidl_generator_cpp/ackermann_msgs/msg/ackermann_drive_stamped.hpp
 CMakeFiles/ackermann_msgs__cpp: rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive_stamped__builder.hpp
 CMakeFiles/ackermann_msgs__cpp: rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive_stamped__struct.hpp
 CMakeFiles/ackermann_msgs__cpp: rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive_stamped__traits.hpp
+CMakeFiles/ackermann_msgs__cpp: rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive_stamped__type_support.hpp
+CMakeFiles/ackermann_msgs__cpp: rosidl_generator_cpp/ackermann_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
 
 rosidl_generator_cpp/ackermann_msgs/msg/ackermann_drive.hpp: /opt/ros/humble/lib/rosidl_generator_cpp/rosidl_generator_cpp
 rosidl_generator_cpp/ackermann_msgs/msg/ackermann_drive.hpp: /opt/ros/humble/local/lib/python3.10/dist-packages/rosidl_generator_cpp/__init__.py
@@ -136,6 +139,9 @@ rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive__struct.hpp: rosi
 rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive__traits.hpp: rosidl_generator_cpp/ackermann_msgs/msg/ackermann_drive.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive__traits.hpp
 
+rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive__type_support.hpp: rosidl_generator_cpp/ackermann_msgs/msg/ackermann_drive.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive__type_support.hpp
+
 rosidl_generator_cpp/ackermann_msgs/msg/ackermann_drive_stamped.hpp: rosidl_generator_cpp/ackermann_msgs/msg/ackermann_drive.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/ackermann_msgs/msg/ackermann_drive_stamped.hpp
 
@@ -148,15 +154,20 @@ rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive_stamped__struct.h
 rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive_stamped__traits.hpp: rosidl_generator_cpp/ackermann_msgs/msg/ackermann_drive.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive_stamped__traits.hpp
 
+rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive_stamped__type_support.hpp: rosidl_generator_cpp/ackermann_msgs/msg/ackermann_drive.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive_stamped__type_support.hpp
+
 ackermann_msgs__cpp: CMakeFiles/ackermann_msgs__cpp
 ackermann_msgs__cpp: rosidl_generator_cpp/ackermann_msgs/msg/ackermann_drive.hpp
 ackermann_msgs__cpp: rosidl_generator_cpp/ackermann_msgs/msg/ackermann_drive_stamped.hpp
 ackermann_msgs__cpp: rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive__builder.hpp
 ackermann_msgs__cpp: rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive__struct.hpp
 ackermann_msgs__cpp: rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive__traits.hpp
+ackermann_msgs__cpp: rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive__type_support.hpp
 ackermann_msgs__cpp: rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive_stamped__builder.hpp
 ackermann_msgs__cpp: rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive_stamped__struct.hpp
 ackermann_msgs__cpp: rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive_stamped__traits.hpp
+ackermann_msgs__cpp: rosidl_generator_cpp/ackermann_msgs/msg/detail/ackermann_drive_stamped__type_support.hpp
 ackermann_msgs__cpp: CMakeFiles/ackermann_msgs__cpp.dir/build.make
 .PHONY : ackermann_msgs__cpp
 

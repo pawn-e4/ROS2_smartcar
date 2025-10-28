@@ -1,22 +1,16 @@
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument, LogInfo, TimerAction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch_ros.actions import Node
+from launch_ros.actions import Node, SetParameter
 from ament_index_python.packages import get_package_share_directory
 import os
 
-
 def generate_launch_description():
-    # Paths
     pkg_share = get_package_share_directory('smart_car')
     gazebo_pkg_share = get_package_share_directory('gazebo_ros')
 
-    # World file (absolute)
-    world_file = os.path.expanduser('~/assignment/src/smart_car/world/smalltown.world')
-    if not os.path.exists(world_file):
-        print(f"ERROR: World file does not exist: {world_file}")
-    else:
-        print(f"World file found: {world_file}")
+    # ALWAYS use pkg_share so the install space works
+    world_file = os.path.join(pkg_share, 'world', 'smalltown.world')
 
     world_arg = DeclareLaunchArgument(
         'world',
@@ -25,7 +19,6 @@ def generate_launch_description():
     )
     log_world = LogInfo(msg=['Loading world: ', world_file])
 
-    # Gazebo (server + client)
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(gazebo_pkg_share, 'launch', 'gazebo.launch.py')
@@ -38,31 +31,38 @@ def generate_launch_description():
     with open(urdf_file, 'r') as f:
         robot_desc = f.read()
 
-    # Joint state publisher (so RViz shows wheels)
+    # Global params first, so every node sees /clock + robot_description
+    set_sim_time = SetParameter(name='use_sim_time', value=True)
+    set_robot_description = SetParameter(name='robot_description', value=robot_desc)
+
     joint_state_publisher = Node(
         package='joint_state_publisher',
         executable='joint_state_publisher',
         name='joint_state_publisher',
         output='screen',
+        parameters=[{'use_sim_time': True}, {'publish_default_positions': True}],
     )
-    # If you prefer sliders, swap to joint_state_publisher_gui:
-    # joint_state_publisher = Node(
-    #     package='joint_state_publisher_gui',
-    #     executable='joint_state_publisher_gui',
-    #     name='joint_state_publisher_gui',
-    #     output='screen',
-    # )
 
-    # Robot State Publisher
     robot_state_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
         name='robot_state_publisher',
         output='screen',
-        parameters=[{'robot_description': robot_desc}]
+        parameters=[{'robot_description': robot_desc}, {'use_sim_time': True}],
     )
 
-    # Spawn robot into Gazebo
+    # ← wheel odom as a proper ROS2 node with respawn + tty to surface errors
+    wheel_odometry = Node(
+        package='smart_car',
+        executable='wheel_odometry',
+        name='wheel_odometry',
+        output='screen',
+        parameters=[{'use_sim_time': True}],
+        emulate_tty=True,
+        respawn=True,
+        respawn_delay=1.0,
+    )
+
     spawn_robot = Node(
         package='gazebo_ros',
         executable='spawn_entity.py',
@@ -70,27 +70,29 @@ def generate_launch_description():
         output='screen'
     )
 
-    # RViz (start a few seconds later so TF/robot_description are ready)
     rviz_config_file = os.path.join(pkg_share, 'rviz', 'smartcar.rviz')
     rviz = TimerAction(
-        period=5.0,  # seconds
-        actions=[
-            Node(
-                package='rviz2',
-                executable='rviz2',
-                name='rviz2',
-                output='screen',
-                arguments=['-d', rviz_config_file]
-            )
-        ]
+        period=3.0,
+        actions=[Node(
+            package='rviz2',
+            executable='rviz2',
+            name='rviz2',
+            output='screen',
+            arguments=['-d', rviz_config_file],
+            parameters=[{'use_sim_time': True}],
+        )]
     )
 
     return LaunchDescription([
+        set_sim_time,
+        set_robot_description,
         world_arg,
         log_world,
         gazebo,
         joint_state_publisher,
         robot_state_publisher,
+        wheel_odometry,
         spawn_robot,
-        rviz
+        rviz,
     ])
+

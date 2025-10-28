@@ -7,5 +7,6 @@
 #include "ackermann_msgs/msg/detail/ackermann_drive__struct.hpp"
 #include "ackermann_msgs/msg/detail/ackermann_drive__builder.hpp"
 #include "ackermann_msgs/msg/detail/ackermann_drive__traits.hpp"
+#include "ackermann_msgs/msg/detail/ackermann_drive__type_support.hpp"
 
 #endif  // ACKERMANN_MSGS__MSG__ACKERMANN_DRIVE_HPP_

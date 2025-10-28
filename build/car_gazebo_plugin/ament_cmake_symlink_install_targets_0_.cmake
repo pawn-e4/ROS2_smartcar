@@ -1,1 +1,0 @@
-ament_cmake_symlink_install_targets("TARGET_FILES" "/home/ros2/assignment/build/car_gazebo_plugin/libcar_gazebo_plugin.so" "TARGETS" "car_gazebo_plugin" "ARCHIVE_DESTINATION" "lib" "LIBRARY_DESTINATION" "lib" "RUNTIME_DESTINATION" "lib/car_gazebo_plugin")

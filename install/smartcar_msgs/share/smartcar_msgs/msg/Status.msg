@@ -1,1 +1,5 @@
-/home/ros2/assignment/src/smartcar_msgs/msg/Status.msg
+int32 battery_voltage_mv
+int32 battery_current_ma
+float64 battery_percentage
+float64 steering_angle_rad
+int32 engine_speed_rpm

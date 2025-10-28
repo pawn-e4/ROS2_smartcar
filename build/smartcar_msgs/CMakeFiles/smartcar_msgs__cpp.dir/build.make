@@ -70,6 +70,8 @@ CMakeFiles/smartcar_msgs__cpp: rosidl_generator_cpp/smartcar_msgs/msg/status.hpp
 CMakeFiles/smartcar_msgs__cpp: rosidl_generator_cpp/smartcar_msgs/msg/detail/status__builder.hpp
 CMakeFiles/smartcar_msgs__cpp: rosidl_generator_cpp/smartcar_msgs/msg/detail/status__struct.hpp
 CMakeFiles/smartcar_msgs__cpp: rosidl_generator_cpp/smartcar_msgs/msg/detail/status__traits.hpp
+CMakeFiles/smartcar_msgs__cpp: rosidl_generator_cpp/smartcar_msgs/msg/detail/status__type_support.hpp
+CMakeFiles/smartcar_msgs__cpp: rosidl_generator_cpp/smartcar_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
 
 rosidl_generator_cpp/smartcar_msgs/msg/status.hpp: /opt/ros/humble/lib/rosidl_generator_cpp/rosidl_generator_cpp
 rosidl_generator_cpp/smartcar_msgs/msg/status.hpp: /opt/ros/humble/local/lib/python3.10/dist-packages/rosidl_generator_cpp/__init__.py
@@ -99,10 +101,14 @@ rosidl_generator_cpp/smartcar_msgs/msg/detail/status__struct.hpp: rosidl_generat
 rosidl_generator_cpp/smartcar_msgs/msg/detail/status__traits.hpp: rosidl_generator_cpp/smartcar_msgs/msg/status.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/smartcar_msgs/msg/detail/status__traits.hpp
 
+rosidl_generator_cpp/smartcar_msgs/msg/detail/status__type_support.hpp: rosidl_generator_cpp/smartcar_msgs/msg/status.hpp
+	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/smartcar_msgs/msg/detail/status__type_support.hpp
+
 smartcar_msgs__cpp: CMakeFiles/smartcar_msgs__cpp
 smartcar_msgs__cpp: rosidl_generator_cpp/smartcar_msgs/msg/detail/status__builder.hpp
 smartcar_msgs__cpp: rosidl_generator_cpp/smartcar_msgs/msg/detail/status__struct.hpp
 smartcar_msgs__cpp: rosidl_generator_cpp/smartcar_msgs/msg/detail/status__traits.hpp
+smartcar_msgs__cpp: rosidl_generator_cpp/smartcar_msgs/msg/detail/status__type_support.hpp
 smartcar_msgs__cpp: rosidl_generator_cpp/smartcar_msgs/msg/status.hpp
 smartcar_msgs__cpp: CMakeFiles/smartcar_msgs__cpp.dir/build.make
 .PHONY : smartcar_msgs__cpp

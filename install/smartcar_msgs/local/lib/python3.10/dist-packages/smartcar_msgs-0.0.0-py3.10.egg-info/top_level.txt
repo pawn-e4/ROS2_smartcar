@@ -1,1 +1,1 @@
-/home/ros2/assignment/build/smartcar_msgs/ament_cmake_python/smartcar_msgs/smartcar_msgs.egg-info/top_level.txt
+smartcar_msgs

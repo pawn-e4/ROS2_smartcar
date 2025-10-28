@@ -315,17 +315,17 @@ smartcar_msgs__rosidl_typesupport_cpp/fast:
 .PHONY : smartcar_msgs__rosidl_typesupport_cpp/fast
 
 #=============================================================================
-# Target rules for targets named ament_cmake_python_symlink_smartcar_msgs
+# Target rules for targets named ament_cmake_python_copy_smartcar_msgs
 
 # Build rule for target.
-ament_cmake_python_symlink_smartcar_msgs: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ament_cmake_python_symlink_smartcar_msgs
-.PHONY : ament_cmake_python_symlink_smartcar_msgs
+ament_cmake_python_copy_smartcar_msgs: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ament_cmake_python_copy_smartcar_msgs
+.PHONY : ament_cmake_python_copy_smartcar_msgs
 
 # fast build rule for target.
-ament_cmake_python_symlink_smartcar_msgs/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ament_cmake_python_symlink_smartcar_msgs.dir/build.make CMakeFiles/ament_cmake_python_symlink_smartcar_msgs.dir/build
-.PHONY : ament_cmake_python_symlink_smartcar_msgs/fast
+ament_cmake_python_copy_smartcar_msgs/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ament_cmake_python_copy_smartcar_msgs.dir/build.make CMakeFiles/ament_cmake_python_copy_smartcar_msgs.dir/build
+.PHONY : ament_cmake_python_copy_smartcar_msgs/fast
 
 #=============================================================================
 # Target rules for targets named ament_cmake_python_build_smartcar_msgs_egg
@@ -683,7 +683,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... ament_cmake_python_build_smartcar_msgs_egg"
-	@echo "... ament_cmake_python_symlink_smartcar_msgs"
+	@echo "... ament_cmake_python_copy_smartcar_msgs"
 	@echo "... smartcar_msgs"
 	@echo "... smartcar_msgs__cpp"
 	@echo "... smartcar_msgs__py"

@@ -1,1 +1,0 @@
-/home/ros2/assignment/src/smart_car/scripts/wheel_odometry.py

@@ -1,1 +1,3 @@
-/home/ros2/assignment/build/car_gazebo_plugin/ament_cmake_environment_hooks/local_setup.dsv
+source;share/car_gazebo_plugin/environment/ament_prefix_path.sh
+source;share/car_gazebo_plugin/environment/library_path.sh
+source;share/car_gazebo_plugin/environment/path.sh
