@@ -12,6 +12,7 @@ import tf_transformations
 class WheelOdometryNode(Node):
     def __init__(self):
         super().__init__('wheel_odometry')
+        self.set_parameters([rclpy.parameter.Parameter('use_sim_time', value=True)])
 
         # Parameters
         self.declare_parameter('wheel_radius', 0.1)  # meters
@@ -71,9 +72,10 @@ class WheelOdometryNode(Node):
         # Create quaternion
         q = tf_transformations.quaternion_from_euler(0, 0, self.yaw)
 
+        current_time = self.get_clock().now().to_msg()
         # Transform odom → base_link
         t = TransformStamped()
-        t.header.stamp = current_time.to_msg()
+        t.header.stamp = current_time
         t.header.frame_id = 'odom'
         t.child_frame_id = 'base_footprint'
         t.transform.translation.x = self.x
@@ -87,7 +89,7 @@ class WheelOdometryNode(Node):
 
         # Odometry message
         odom = Odometry()
-        odom.header.stamp = current_time.to_msg()
+        odom.header.stamp = current_time
         odom.header.frame_id = 'odom'
         odom.child_frame_id = 'base_footprint'
         odom.pose.pose.position.x = self.x
@@ -114,14 +116,17 @@ class WheelOdometryNode(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = WheelOdometryNode()
+    node = WheelOdometryNode()   # or JointStatePublisher() in the other file
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
         pass
     finally:
         node.destroy_node()
-        rclpy.shutdown()
+        # Prevent double-shutdown when multiple nodes share one launch context
+        if rclpy.ok():
+            rclpy.shutdown()
+
 
 
 if __name__ == '__main__':

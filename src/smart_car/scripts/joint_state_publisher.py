@@ -78,15 +78,17 @@ class JointStatePublisher(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = JointStatePublisher()
+    node = JointStatePublisher()     # ✅ use this class, not WheelOdometryNode
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
         pass
     finally:
         node.destroy_node()
-        rclpy.shutdown()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 
 if __name__ == '__main__':
     main()
+

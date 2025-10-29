@@ -28,10 +28,11 @@ install(PROGRAMS
 install(FILES
   launch/gazebo.launch.py
   launch/smartcar.launch.py
+  launch/localization.launch.py
   DESTINATION share/${PROJECT_NAME}/launch
 )
 
-install(DIRECTORY urdf rviz world nav2_map
+install(DIRECTORY launch urdf rviz world nav2_map config
   DESTINATION share/${PROJECT_NAME}
 )
 

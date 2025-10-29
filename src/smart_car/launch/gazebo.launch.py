@@ -1,76 +1,60 @@
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument, LogInfo, TimerAction
+from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument, LogInfo, TimerAction, OpaqueFunction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node, SetParameter
 from ament_index_python.packages import get_package_share_directory
+from launch.substitutions import Command, LaunchConfiguration
+from launch_ros.parameter_descriptions import ParameterValue
 import os
 
 def generate_launch_description():
     pkg_share = get_package_share_directory('smart_car')
     gazebo_pkg_share = get_package_share_directory('gazebo_ros')
 
-    # ALWAYS use pkg_share so the install space works
+    # ---- Paths
     world_file = os.path.join(pkg_share, 'world', 'smalltown.world')
+    urdf_file  = os.path.join(pkg_share, 'urdf', 'smartcar.urdf')
+    rviz_file  = os.path.join(pkg_share, 'rviz', 'smartcar.rviz')
 
-    world_arg = DeclareLaunchArgument(
-        'world',
-        default_value=world_file,
-        description='Absolute path to the world file'
-    )
-    log_world = LogInfo(msg=['Loading world: ', world_file])
+    # ---- Args
+    world_arg = DeclareLaunchArgument('world', default_value=world_file)
+    spawn_arg = DeclareLaunchArgument('spawn_robot', default_value='true')  # set false if your world already contains the robot
 
+    # ---- Gazebo (server+client)
     gazebo = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(gazebo_pkg_share, 'launch', 'gazebo.launch.py')
-        ),
-        launch_arguments={'world': world_file}.items()
+        PythonLaunchDescriptionSource(os.path.join(gazebo_pkg_share, 'launch', 'gazebo.launch.py')),
+        launch_arguments={'world': LaunchConfiguration('world')}.items()
     )
 
-    # Load URDF text
-    urdf_file = os.path.join(pkg_share, 'urdf', 'smartcar.urdf')
-    with open(urdf_file, 'r') as f:
-        robot_desc = f.read()
+    # ---- Shared params
+    robot_description = ParameterValue(Command(['cat ', urdf_file]), value_type=str)
+    set_sim_time        = SetParameter(name='use_sim_time', value=True)
+    set_robot_desc_param= SetParameter(name='robot_description', value=robot_description)
 
-    # Global params first, so every node sees /clock + robot_description
-    set_sim_time = SetParameter(name='use_sim_time', value=True)
-    set_robot_description = SetParameter(name='robot_description', value=robot_desc)
-
-    joint_state_publisher = Node(
-        package='joint_state_publisher',
-        executable='joint_state_publisher',
-        name='joint_state_publisher',
-        output='screen',
-        parameters=[{'use_sim_time': True}, {'publish_default_positions': True}],
-    )
-
+    # ---- One robot_state_publisher (only one place publishes /robot_description to RViz)
     robot_state_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
         name='robot_state_publisher',
         output='screen',
-        parameters=[{'robot_description': robot_desc}, {'use_sim_time': True}],
+        parameters=[{'use_sim_time': True, 'robot_description': robot_description}],
     )
 
-    # ← wheel odom as a proper ROS2 node with respawn + tty to surface errors
-    wheel_odometry = Node(
-        package='smart_car',
-        executable='wheel_odometry',
-        name='wheel_odometry',
-        output='screen',
-        parameters=[{'use_sim_time': True}],
-        emulate_tty=True,
-        respawn=True,
-        respawn_delay=1.0,
-    )
+    # ---- Conditionally spawn the robot into Gazebo (if world doesn’t already spawn it)
+    def maybe_spawn_robot(context, *args, **kwargs):
+        spawn_flag = LaunchConfiguration('spawn_robot').perform(context).lower()
+        if spawn_flag in ('true', '1', 'yes', 'on'):
+            return [Node(
+                package='gazebo_ros',
+                executable='spawn_entity.py',
+                arguments=['-entity', 'smart_car', '-topic', 'robot_description'],
+                output='screen'
+            )]
+        return []
 
-    spawn_robot = Node(
-        package='gazebo_ros',
-        executable='spawn_entity.py',
-        arguments=['-entity', 'smart_car', '-topic', 'robot_description'],
-        output='screen'
-    )
+    spawn_entity_group = OpaqueFunction(function=maybe_spawn_robot)
 
-    rviz_config_file = os.path.join(pkg_share, 'rviz', 'smartcar.rviz')
+    # ---- RViz delayed start
     rviz = TimerAction(
         period=3.0,
         actions=[Node(
@@ -78,21 +62,19 @@ def generate_launch_description():
             executable='rviz2',
             name='rviz2',
             output='screen',
-            arguments=['-d', rviz_config_file],
+            arguments=['-d', rviz_file],
             parameters=[{'use_sim_time': True}],
         )]
     )
 
     return LaunchDescription([
         set_sim_time,
-        set_robot_description,
+        set_robot_desc_param,
         world_arg,
-        log_world,
+        spawn_arg,
+        LogInfo(msg=['Loading world: ', LaunchConfiguration('world')]),
         gazebo,
-        joint_state_publisher,
         robot_state_publisher,
-        wheel_odometry,
-        spawn_robot,
-        rviz,
+        spawn_entity_group,
+        rviz
     ])
-

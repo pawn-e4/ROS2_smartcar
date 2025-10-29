@@ -54,15 +54,18 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/smart_car/launch" TYPE FILE FILES
     "/home/ros2/assignment/src/smart_car/launch/gazebo.launch.py"
     "/home/ros2/assignment/src/smart_car/launch/smartcar.launch.py"
+    "/home/ros2/assignment/src/smart_car/launch/localization.launch.py"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/smart_car" TYPE DIRECTORY FILES
+    "/home/ros2/assignment/src/smart_car/launch"
     "/home/ros2/assignment/src/smart_car/urdf"
     "/home/ros2/assignment/src/smart_car/rviz"
     "/home/ros2/assignment/src/smart_car/world"
     "/home/ros2/assignment/src/smart_car/nav2_map"
+    "/home/ros2/assignment/src/smart_car/config"
     )
 endif()
 
