@@ -1,0 +1,121 @@
+amcl:
+  ros__parameters:
+    use_sim_time: True
+    # Frames
+    base_frame_id: base_footprint
+    odom_frame_id: odom
+    global_frame_id: map
+    # Laser
+    scan_topic: /scan           # your lidar topic
+    # Commonly sane AMCL params
+    set_initial_pose: False
+    alpha1: 0.2
+    alpha2: 0.2
+    alpha3: 0.2
+    alpha4: 0.2
+    alpha5: 0.2
+    laser_model_type: likelihood_field
+    min_particles: 100
+    max_particles: 500
+    update_min_d: 0.05
+    update_min_a: 0.2
+    resample_interval: 2
+
+map_server:
+  ros__parameters:
+    use_sim_time: True
+    yaml_filename: /home/ros2/assignment/src/smart_car/nav2_map/smalltown_world.yaml
+
+planner_server:
+  ros__parameters:
+    use_sim_time: True
+    expected_planner_frequency: 10.0
+    planner_plugins: ["GridBased"]
+    GridBased:
+      plugin: "nav2_navfn_planner/NavfnPlanner"
+      use_astar: False
+      tolerate_unknown: True
+
+controller_server:
+  ros__parameters:
+    use_sim_time: True
+    odom_topic: /odometry/filtered
+    controller_plugins: ["FollowPath"]
+    FollowPath:
+      plugin: "dwb_core::DWBLocalPlanner"
+      debug_trajectory_details: False
+      min_vel_x: 0.0
+      max_vel_x: 0.5
+      max_vel_theta: 1.0
+      acc_lim_x: 0.5
+      acc_lim_theta: 1.0
+      decel_lim_x: -0.5
+      decel_lim_theta: -1.0
+
+bt_navigator:
+  ros__parameters:
+    use_sim_time: True
+    default_bt_xml_filename: "navigate_w_replanning_and_recovery.xml"
+
+waypoint_follower:
+  ros__parameters:
+    use_sim_time: True
+
+# Robot description note:
+robot_state_publisher:
+  ros__parameters:
+    use_sim_time: True
+    odom_topic: /odometry/filtered
+
+# Costmaps
+local_costmap:
+  local_costmap:
+    ros__parameters:
+      use_sim_time: True
+      global_frame: odom
+      robot_base_frame: base_footprint
+      rolling_window: True
+      width: 3.0
+      height: 3.0
+      resolution: 0.05
+      update_frequency: 5.0
+      publish_frequency: 2.0
+      footprint: "[[0.25, 0.15], [0.25, -0.15], [-0.25, -0.15], [-0.25, 0.15]]"
+      plugin_names: ["obstacle_layer", "inflation_layer"]
+      plugin_types: ["nav2_costmap_2d::ObstacleLayer", "nav2_costmap_2d::InflationLayer"]
+      observation_sources: scan
+      scan:
+        topic: /scan
+        data_type: LaserScan
+        marking: True
+        clearing: True
+      inflation_layer:
+        cost_scaling_factor: 3.0
+        inflation_radius: 0.5
+
+global_costmap:
+  global_costmap:
+    ros__parameters:
+      use_sim_time: True
+      global_frame: map
+      robot_base_frame: base_footprint
+      rolling_window: False
+      width: 50.0
+      height: 50.0
+      resolution: 0.05
+      update_frequency: 2.0
+      publish_frequency: 1.0
+      footprint: "[[0.25, 0.15], [0.25, -0.15], [-0.25, -0.15], [-0.25, 0.15]]"
+      plugin_names: ["static_layer", "obstacle_layer", "inflation_layer"]
+      plugin_types: ["nav2_costmap_2d::StaticLayer", "nav2_costmap_2d::ObstacleLayer", "nav2_costmap_2d::InflationLayer"]
+      static_layer:
+        map_subscribe_transient_local: True
+      observation_sources: scan
+      scan:
+        topic: /scan
+        data_type: LaserScan
+        marking: True
+        clearing: True
+      inflation_layer:
+        cost_scaling_factor: 3.0
+        inflation_radius: 0.5
