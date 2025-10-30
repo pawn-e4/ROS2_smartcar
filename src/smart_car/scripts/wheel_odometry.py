@@ -22,7 +22,7 @@ class WheelOdometryNode(Node):
         self.wheel_base = self.get_parameter('wheel_base').value
 
         # Publishers
-        self.odom_pub = self.create_publisher(Odometry, '/odom', 10)
+        self.publisher_ = self.create_publisher(Odometry, '/smart_car/wheel/odom', 10)
         self.br = TransformBroadcaster(self)
         self.static_br = StaticTransformBroadcaster(self)
 
@@ -111,7 +111,8 @@ class WheelOdometryNode(Node):
                                     0.0, 0.0, 0.0, 0.0, 0.0, 1e3
         ]
 
-        self.odom_pub.publish(odom)
+        self.publisher_.publish(odom)
+
 
 
 def main(args=None):
