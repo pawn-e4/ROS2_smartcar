@@ -10,7 +10,7 @@ ekf_local:
     base_link_frame: base_footprint
     world_frame: odom
 
-    # Let wheel_odometry be the ONLY TF publisher for odom->base_footprint
+    # Wheel odometry owns the odom -> base_footprint TF; EKF only provides filtered odometry topic
     publish_tf: false
 
     # Fuse your wheel odom

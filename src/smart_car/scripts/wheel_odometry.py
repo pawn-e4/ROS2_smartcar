@@ -7,6 +7,7 @@ from geometry_msgs.msg import TransformStamped
 from tf2_ros import TransformBroadcaster
 from smartcar_msgs.msg import Status
 import tf_transformations
+from rcl_interfaces.msg import SetParametersResult
 
 
 class WheelOdometryNode(Node):
@@ -17,9 +18,13 @@ class WheelOdometryNode(Node):
         # Correct parameters
         self.declare_parameter('wheel_radius', 0.032)   # meters
         self.declare_parameter('wheel_base', 0.257)     # meters (distance between front & rear axle)
+        self.declare_parameter('broadcast_tf', True)
 
         self.wheel_radius = self.get_parameter('wheel_radius').value
         self.wheel_base = self.get_parameter('wheel_base').value
+        self.broadcast_tf = self.get_parameter('broadcast_tf').value
+
+        self.add_on_set_parameters_callback(self.on_parameters_set)
 
         # Publishers
         self.publisher_ = self.create_publisher(Odometry, '/smart_car/wheel/odom', 10)
@@ -39,7 +44,7 @@ class WheelOdometryNode(Node):
         # Timer to publish odometry
         self.create_timer(0.1, self.publish_odom)
 
-        self.get_logger().info('✅ Wheel odometry node initialized (corrected parameters + no duplicate TF).')
+        self.get_logger().info('✅ Wheel odometry node initialized with corrected parameters and TF broadcasting enabled.')
 
     def status_callback(self, msg):
         # Convert engine RPM to linear velocity
@@ -60,19 +65,20 @@ class WheelOdometryNode(Node):
         # Quaternion from yaw
         q = tf_transformations.quaternion_from_euler(0, 0, self.yaw)
 
-        # TF: odom → base_footprint
-        t = TransformStamped()
-        t.header.stamp = current_time.to_msg()
-        t.header.frame_id = 'odom'
-        t.child_frame_id = 'base_footprint'
-        t.transform.translation.x = self.x
-        t.transform.translation.y = self.y
-        t.transform.translation.z = 0.0
-        t.transform.rotation.x = q[0]
-        t.transform.rotation.y = q[1]
-        t.transform.rotation.z = q[2]
-        t.transform.rotation.w = q[3]
-        self.br.sendTransform(t)
+        # TF: odom → base_footprint (enabled by default; can be disabled if EKF should own it)
+        if self.broadcast_tf:
+            t = TransformStamped()
+            t.header.stamp = current_time.to_msg()
+            t.header.frame_id = 'odom'
+            t.child_frame_id = 'base_footprint'
+            t.transform.translation.x = self.x
+            t.transform.translation.y = self.y
+            t.transform.translation.z = 0.0
+            t.transform.rotation.x = q[0]
+            t.transform.rotation.y = q[1]
+            t.transform.rotation.z = q[2]
+            t.transform.rotation.w = q[3]
+            self.br.sendTransform(t)
 
         # Odometry message
         odom = Odometry()
@@ -89,6 +95,12 @@ class WheelOdometryNode(Node):
         odom.twist.twist.angular.z = (self.v / self.wheel_base) * math.tan(self.steering_angle)
 
         self.publisher_.publish(odom)
+
+    def on_parameters_set(self, params):
+        for param in params:
+            if param.name == 'broadcast_tf':
+                self.broadcast_tf = param.value
+        return SetParametersResult(successful=True)
 
 
 def main(args=None):
