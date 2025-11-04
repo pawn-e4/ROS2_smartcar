@@ -1,0 +1,115 @@
+[0.030s] Invoking command in '/home/ros2/assignment/build/car_gazebo_plugin': CMAKE_PREFIX_PATH=/home/ros2/assignment/install/smartcar_msgs:/home/ros2/assignment/install/ackermann_msgs:/home/ros2/assignment/install/smart_car:/home/ros2/assignment/install/car_gazebo_plugin:/opt/ros/humble LD_LIBRARY_PATH=/home/ros2/assignment/install/smartcar_msgs/lib:/home/ros2/assignment/install/ackermann_msgs/lib:/home/ros2/assignment/install/car_gazebo_plugin/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins /usr/bin/cmake --build /home/ros2/assignment/build/car_gazebo_plugin -- -j8 -l8
+[0.076s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.308s] [33mCMake Warning (dev) at /usr/share/cmake-3.22/Modules/FindPackageHandleStandardArgs.cmake:438 (message):
+[0.309s]   The package name passed to `find_package_handle_standard_args` (PkgConfig)
+[0.309s]   does not match the name of the calling package (gazebo).  This can lead to
+[0.309s]   problems in calling code that expects `find_package` result variables
+[0.309s]   (e.g., `_FOUND`) to follow a certain pattern.
+[0.309s] Call Stack (most recent call first):
+[0.309s]   /usr/share/cmake-3.22/Modules/FindPkgConfig.cmake:99 (find_package_handle_standard_args)
+[0.309s]   /usr/lib/x86_64-linux-gnu/cmake/gazebo/gazebo-config.cmake:72 (include)
+[0.309s]   CMakeLists.txt:16 (find_package)
+[0.310s] This warning is for project developers.  Use -Wno-dev to suppress it.
+[0.310s] [0m
+[0.365s] -- Found DART: /usr/include (Required is at least version "6.6") found components: dart 
+[0.442s] -- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found version "3.12.4") 
+[0.446s] -- Looking for ignition-math6 -- found version 6.15.1
+[0.458s] -- Searching for dependencies of ignition-math6
+[0.462s] -- Looking for OGRE...
+[0.474s] -- Found Ogre Ghadamon (1.9.0)
+[0.475s] -- Found OGRE: optimized;/usr/lib/x86_64-linux-gnu/libOgreMain.so;debug;/usr/lib/x86_64-linux-gnu/libOgreMain.so
+[0.492s] -- Looking for OGRE_Paging...
+[0.492s] -- Found OGRE_Paging: optimized;/usr/lib/x86_64-linux-gnu/libOgrePaging.so;debug;/usr/lib/x86_64-linux-gnu/libOgrePaging.so
+[0.492s] -- Looking for OGRE_Terrain...
+[0.492s] -- Found OGRE_Terrain: optimized;/usr/lib/x86_64-linux-gnu/libOgreTerrain.so;debug;/usr/lib/x86_64-linux-gnu/libOgreTerrain.so
+[0.493s] -- Looking for OGRE_Property...
+[0.493s] -- Found OGRE_Property: optimized;/usr/lib/x86_64-linux-gnu/libOgreProperty.so;debug;/usr/lib/x86_64-linux-gnu/libOgreProperty.so
+[0.493s] -- Looking for OGRE_RTShaderSystem...
+[0.493s] -- Found OGRE_RTShaderSystem: optimized;/usr/lib/x86_64-linux-gnu/libOgreRTShaderSystem.so;debug;/usr/lib/x86_64-linux-gnu/libOgreRTShaderSystem.so
+[0.493s] -- Looking for OGRE_Volume...
+[0.494s] -- Found OGRE_Volume: optimized;/usr/lib/x86_64-linux-gnu/libOgreVolume.so;debug;/usr/lib/x86_64-linux-gnu/libOgreVolume.so
+[0.494s] -- Looking for OGRE_Overlay...
+[0.494s] -- Found OGRE_Overlay: optimized;/usr/lib/x86_64-linux-gnu/libOgreOverlay.so;debug;/usr/lib/x86_64-linux-gnu/libOgreOverlay.so
+[0.838s] -- Looking for ignition-math6 -- found version 6.15.1
+[0.841s] -- Looking for ignition-transport8 -- found version 8.2.1
+[0.842s] -- Searching for dependencies of ignition-transport8
+[0.876s] -- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found suitable version "3.12.4", minimum required is "3") 
+[0.894s] -- Config-file not installed for ZeroMQ -- checking for pkg-config
+[0.902s] -- Checking for module 'libzmq >= 4'
+[0.936s] --   Found libzmq , version 4.3.4
+[1.004s] -- Checking for module 'uuid'
+[1.027s] --   Found uuid, version 2.37.2
+[1.083s] -- Looking for ignition-msgs5 -- found version 5.8.1
+[1.084s] -- Searching for dependencies of ignition-msgs5
+[1.117s] -- Looking for ignition-math6 -- found version 6.15.1
+[1.126s] -- Checking for module 'tinyxml2'
+[1.152s] --   Found tinyxml2, version 9.0.0
+[1.209s] -- Looking for ignition-msgs5 -- found version 5.8.1
+[1.211s] -- Looking for ignition-common3 -- found version 3.14.0
+[1.212s] -- Searching for dependencies of ignition-common3
+[1.213s] -- Looking for dlfcn.h - found
+[1.213s] -- Looking for libdl - found
+[1.238s] -- Searching for <ignition-common3> component [graphics]
+[1.239s] -- Looking for ignition-common3-graphics -- found version 3.14.0
+[1.240s] -- Searching for dependencies of ignition-common3-graphics
+[1.240s] -- Looking for ignition-math6 -- found version 6.15.1
+[1.243s] -- Looking for ignition-fuel_tools4 -- found version 4.4.0
+[1.244s] -- Searching for dependencies of ignition-fuel_tools4
+[1.315s] -- Checking for module 'jsoncpp'
+[1.342s] --   Found jsoncpp, version 1.9.5
+[1.412s] -- Checking for module 'libzip'
+[1.438s] --   Found libzip, version 1.7.3
+[1.493s] -- Looking for ignition-common3 -- found version 3.14.0
+[1.493s] -- Looking for ignition-math6 -- found version 6.15.1
+[1.494s] -- Looking for ignition-msgs5 -- found version 5.8.1
+[1.500s] -- Found gazebo_ros: 3.9.0 (/opt/ros/humble/share/gazebo_ros/cmake)
+[1.553s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[1.557s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[1.570s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[1.590s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.615s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.684s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[1.686s] -- Found rmw_cyclonedds_cpp: 1.3.4 (/opt/ros/humble/share/rmw_cyclonedds_cpp/cmake)
+[1.718s] -- Using RMW implementation 'rmw_cyclonedds_cpp' as default
+[1.829s] -- Gazebo version: 11.10
+[1.832s] -- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[1.918s] -- Found nav_msgs: 4.9.0 (/opt/ros/humble/share/nav_msgs/cmake)
+[1.965s] -- Found ackermann_msgs: 2.0.2 (/home/ros2/assignment/install/ackermann_msgs/share/ackermann_msgs/cmake)
+[1.990s] -- Found tf2: 0.25.16 (/opt/ros/humble/share/tf2/cmake)
+[2.003s] -- Found tf2_ros: 0.25.16 (/opt/ros/humble/share/tf2_ros/cmake)
+[2.229s] -- Found smartcar_msgs: 0.0.0 (/home/ros2/assignment/install/smartcar_msgs/share/smartcar_msgs/cmake)
+[2.374s] -- Configuring done
+[2.449s] -- Generating done
+[2.462s] -- Build files have been written to: /home/ros2/assignment/build/car_gazebo_plugin
+[2.518s] [35m[1mConsolidate compiler generated dependencies of target car_gazebo_plugin[0m
+[2.577s] [ 50%] [32mBuilding CXX object CMakeFiles/car_gazebo_plugin.dir/src/car_gazebo_plugin.cpp.o[0m
+[3.398s] [100%] [32m[1mLinking CXX shared library libcar_gazebo_plugin.so[0m
+[6.027s] [100%] Built target car_gazebo_plugin
+[6.047s] Invoked command in '/home/ros2/assignment/build/car_gazebo_plugin' returned '0': CMAKE_PREFIX_PATH=/home/ros2/assignment/install/smartcar_msgs:/home/ros2/assignment/install/ackermann_msgs:/home/ros2/assignment/install/smart_car:/home/ros2/assignment/install/car_gazebo_plugin:/opt/ros/humble LD_LIBRARY_PATH=/home/ros2/assignment/install/smartcar_msgs/lib:/home/ros2/assignment/install/ackermann_msgs/lib:/home/ros2/assignment/install/car_gazebo_plugin/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins /usr/bin/cmake --build /home/ros2/assignment/build/car_gazebo_plugin -- -j8 -l8
+[6.052s] Invoking command in '/home/ros2/assignment/build/car_gazebo_plugin': CMAKE_PREFIX_PATH=/home/ros2/assignment/install/smartcar_msgs:/home/ros2/assignment/install/ackermann_msgs:/home/ros2/assignment/install/smart_car:/home/ros2/assignment/install/car_gazebo_plugin:/opt/ros/humble LD_LIBRARY_PATH=/home/ros2/assignment/install/smartcar_msgs/lib:/home/ros2/assignment/install/ackermann_msgs/lib:/home/ros2/assignment/install/car_gazebo_plugin/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins /usr/bin/cmake --install /home/ros2/assignment/build/car_gazebo_plugin
+[6.063s] -- Install configuration: ""
+[6.063s] -- Installing: /home/ros2/assignment/install/car_gazebo_plugin/share/car_gazebo_plugin/environment/library_path.sh
+[6.063s] -- Installing: /home/ros2/assignment/install/car_gazebo_plugin/share/car_gazebo_plugin/environment/library_path.dsv
+[6.064s] -- Installing: /home/ros2/assignment/install/car_gazebo_plugin/lib/libcar_gazebo_plugin.so
+[6.087s] -- Set runtime path of "/home/ros2/assignment/install/car_gazebo_plugin/lib/libcar_gazebo_plugin.so" to ""
+[6.087s] -- Up-to-date: /home/ros2/assignment/install/car_gazebo_plugin/share/car_gazebo_plugin/
+[6.087s] -- Up-to-date: /home/ros2/assignment/install/car_gazebo_plugin/share/car_gazebo_plugin//car_gazebo.launch.py
+[6.087s] -- Up-to-date: /home/ros2/assignment/install/car_gazebo_plugin/share/ament_index/resource_index/package_run_dependencies/car_gazebo_plugin
+[6.088s] -- Installing: /home/ros2/assignment/install/car_gazebo_plugin/share/ament_index/resource_index/parent_prefix_path/car_gazebo_plugin
+[6.088s] -- Installing: /home/ros2/assignment/install/car_gazebo_plugin/share/car_gazebo_plugin/environment/ament_prefix_path.sh
+[6.088s] -- Installing: /home/ros2/assignment/install/car_gazebo_plugin/share/car_gazebo_plugin/environment/ament_prefix_path.dsv
+[6.088s] -- Installing: /home/ros2/assignment/install/car_gazebo_plugin/share/car_gazebo_plugin/environment/path.sh
+[6.088s] -- Installing: /home/ros2/assignment/install/car_gazebo_plugin/share/car_gazebo_plugin/environment/path.dsv
+[6.089s] -- Up-to-date: /home/ros2/assignment/install/car_gazebo_plugin/share/car_gazebo_plugin/local_setup.bash
+[6.089s] -- Up-to-date: /home/ros2/assignment/install/car_gazebo_plugin/share/car_gazebo_plugin/local_setup.sh
+[6.089s] -- Up-to-date: /home/ros2/assignment/install/car_gazebo_plugin/share/car_gazebo_plugin/local_setup.zsh
+[6.089s] -- Installing: /home/ros2/assignment/install/car_gazebo_plugin/share/car_gazebo_plugin/local_setup.dsv
+[6.089s] -- Installing: /home/ros2/assignment/install/car_gazebo_plugin/share/car_gazebo_plugin/package.dsv
+[6.090s] -- Up-to-date: /home/ros2/assignment/install/car_gazebo_plugin/share/ament_index/resource_index/packages/car_gazebo_plugin
+[6.090s] -- Up-to-date: /home/ros2/assignment/install/car_gazebo_plugin/share/car_gazebo_plugin/cmake/ament_cmake_export_libraries-extras.cmake
+[6.090s] -- Up-to-date: /home/ros2/assignment/install/car_gazebo_plugin/share/car_gazebo_plugin/cmake/ament_cmake_export_include_directories-extras.cmake
+[6.090s] -- Up-to-date: /home/ros2/assignment/install/car_gazebo_plugin/share/car_gazebo_plugin/cmake/ament_cmake_export_dependencies-extras.cmake
+[6.090s] -- Up-to-date: /home/ros2/assignment/install/car_gazebo_plugin/share/car_gazebo_plugin/cmake/car_gazebo_pluginConfig.cmake
+[6.090s] -- Up-to-date: /home/ros2/assignment/install/car_gazebo_plugin/share/car_gazebo_plugin/cmake/car_gazebo_pluginConfig-version.cmake
+[6.090s] -- Up-to-date: /home/ros2/assignment/install/car_gazebo_plugin/share/car_gazebo_plugin/package.xml
+[6.093s] Invoked command in '/home/ros2/assignment/build/car_gazebo_plugin' returned '0': CMAKE_PREFIX_PATH=/home/ros2/assignment/install/smartcar_msgs:/home/ros2/assignment/install/ackermann_msgs:/home/ros2/assignment/install/smart_car:/home/ros2/assignment/install/car_gazebo_plugin:/opt/ros/humble LD_LIBRARY_PATH=/home/ros2/assignment/install/smartcar_msgs/lib:/home/ros2/assignment/install/ackermann_msgs/lib:/home/ros2/assignment/install/car_gazebo_plugin/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins /usr/bin/cmake --install /home/ros2/assignment/build/car_gazebo_plugin

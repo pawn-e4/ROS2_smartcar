@@ -1,18 +1,15 @@
 amcl:
   ros__parameters:
     use_sim_time: True
-    # Frames
     base_frame_id: base_footprint
     odom_frame_id: odom
     global_frame_id: map
-    # Laser
-    scan_topic: /scan           # your lidar topic
-    # Commonly sane AMCL params
-    set_initial_pose: True              # <— changed from False
-    always_reset_initial_pose: True     # <— new
-    initial_pose_x: 0.0                 # <— new
-    initial_pose_y: 0.0                 # <— new
-    initial_pose_a: 0.0                 # <— new (yaw in radians)
+    scan_topic: /scan
+    set_initial_pose: True
+    always_reset_initial_pose: False    # CHANGED
+    initial_pose_x: 0.0
+    initial_pose_y: 0.0
+    initial_pose_a: 0.0
     alpha1: 0.2
     alpha2: 0.2
     alpha3: 0.2
@@ -28,7 +25,7 @@ amcl:
 map_server:
   ros__parameters:
     use_sim_time: True
-    yaml_filename: /home/ros2/assignment/src/smart_car/nav2_map/smalltown_world.yaml
+    yaml_filename: nav2_map/smalltown_world.yaml
 
 planner_server:
   ros__parameters:
@@ -47,57 +44,23 @@ controller_server:
 
     controller_plugins: ["FollowPath"]
     FollowPath:
-      plugin: "dwb_core::DWBLocalPlanner"
-      debug_trajectory_details: False
+      plugin: "nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController"   # CHANGED
+      desired_linear_vel: 0.4
+      lookahead_dist: 0.6
+      min_lookahead_dist: 0.25
+      max_lookahead_dist: 1.0
+      lookahead_time: 1.5
+      transform_tolerance: 0.2
+      use_velocity_scaled_lookahead_dist: true
+      use_rotate_to_heading: false
+      allow_reversing: false
+      max_angular_accel: 0.8
+      max_robot_pose_search_dist: 10.0
+      use_collision_detection: true
+      regulated_linear_scaling_min_radius: 0.6
+      regulated_linear_scaling_min_speed: 0.15
 
-      # --- robot limits (you already had some; kept + completed for DWB) ---
-      min_vel_x: 0.0
-      max_vel_x: 0.5
-      min_vel_y: 0.0         # diff-drive => 0
-      max_vel_y: 0.0         # diff-drive => 0
-      acc_lim_x: 0.5
-      decel_lim_x: -0.5
-      acc_lim_theta: 1.0
-      decel_lim_theta: -1.0
-
-      # --- DWB sampling / sim params ---
-      vx_samples: 20
-      vy_samples: 0
-      vtheta_samples: 40
-      sim_time: 1.5
-      linear_granularity: 0.05
-      angular_granularity: 0.025
-      transform_tolerance: 0.1
-      controller_frequency: 20.0
-
-      # --- REQUIRED: critics list ---
-      critics: ["RotateToGoal", "ObstacleFootprint", "GoalAlign", "PathAlign", "PathDist", "GoalDist", "PreferForward"]
-
-      # --- critic tuning (sane defaults) ---
-      ObstacleFootprint:
-        scale: 0.02
-
-      PathAlign:
-        scale: 32.0
-        forward_point_distance: 0.1
-
-      GoalAlign:
-        scale: 24.0
-
-      PathDist:
-        scale: 32.0
-
-      GoalDist:
-        scale: 24.0
-
-      PreferForward:
-        scale: 1.0
-
-      RotateToGoal:
-        scale: 32.0
-        slowing_factor: 5.0
-        lookahead_time: -1.0
-
+    controller_frequency: 6.0     # CHANGED (was 20)
 
 bt_navigator:
   ros__parameters:
@@ -108,13 +71,13 @@ waypoint_follower:
   ros__parameters:
     use_sim_time: True
 
-# Robot description note:
 robot_state_publisher:
   ros__parameters:
     use_sim_time: True
     odom_topic: /odometry/filtered
 
-# Costmaps
+
+# ---------------- LOCAL COSTMAP ----------------
 local_costmap:
   local_costmap:
     ros__parameters:
@@ -127,19 +90,31 @@ local_costmap:
       resolution: 0.05
       update_frequency: 5.0
       publish_frequency: 2.0
+      static_map: false
       footprint: "[[0.25, 0.15], [0.25, -0.15], [-0.25, -0.15], [-0.25, 0.15]]"
-      plugin_names: ["obstacle_layer", "inflation_layer"]
-      plugin_types: ["nav2_costmap_2d::ObstacleLayer", "nav2_costmap_2d::InflationLayer"]
-      observation_sources: scan
-      scan:
-        topic: /scan
-        data_type: LaserScan
-        marking: True
-        clearing: True
+
+      plugins: ["obstacle_layer", "inflation_layer"]   # CHANGED
+
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        observation_sources: scan
+        scan:
+          topic: /scan
+          data_type: LaserScan
+          marking: True
+          clearing: True
+          inf_is_valid: True
+          obstacle_range: 2.5           # ADDED
+          raytrace_range: 3.0           # ADDED
+          max_obstacle_height: 1.0      # ADDED
+
       inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
         inflation_radius: 0.5
 
+
+# ---------------- GLOBAL COSTMAP ----------------
 global_costmap:
   global_costmap:
     ros__parameters:
@@ -153,16 +128,27 @@ global_costmap:
       update_frequency: 2.0
       publish_frequency: 1.0
       footprint: "[[0.25, 0.15], [0.25, -0.15], [-0.25, -0.15], [-0.25, 0.15]]"
-      plugin_names: ["static_layer", "obstacle_layer", "inflation_layer"]
-      plugin_types: ["nav2_costmap_2d::StaticLayer", "nav2_costmap_2d::ObstacleLayer", "nav2_costmap_2d::InflationLayer"]
+
+      plugins: ["static_layer", "obstacle_layer", "inflation_layer"]   # CHANGED
+
       static_layer:
+        plugin: "nav2_costmap_2d::StaticLayer"
         map_subscribe_transient_local: True
-      observation_sources: scan
-      scan:
-        topic: /scan
-        data_type: LaserScan
-        marking: True
-        clearing: True
+
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        observation_sources: scan
+        scan:
+          topic: /scan
+          data_type: LaserScan
+          marking: True
+          clearing: True
+          inf_is_valid: True
+          obstacle_range: 2.5           # ADDED
+          raytrace_range: 3.0           # ADDED
+          max_obstacle_height: 1.0      # ADDED
+
       inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
         inflation_radius: 0.5

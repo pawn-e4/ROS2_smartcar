@@ -254,16 +254,17 @@
     <geometry>
       <cylinder length="0.02" radius="0.03"/>
     </geometry>
-    <!-- Rotate cylinder 90° around Z so it looks flat on top -->
-    <origin xyz="0 0 0" rpy="0 0 1.5708"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
     <material name="black"/>
   </visual>
+
   <collision>
     <geometry>
       <cylinder length="0.02" radius="0.03"/>
     </geometry>
-    <origin xyz="0 0 0" rpy="0 0 1.5708"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
   </collision>
+
   <inertial>
     <mass value="0.15"/>
     <origin xyz="0 0 0" rpy="0 0 0"/>
