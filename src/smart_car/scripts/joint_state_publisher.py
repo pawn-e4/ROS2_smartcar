@@ -11,7 +11,7 @@ class JointStatePublisher(Node):
         super().__init__('joint_state_publisher')
 
         # --- Use Gazebo's simulated time if available ---
-        # Do NOT redeclare it if already set by launch or Gazebo
+    
         if not self.has_parameter('use_sim_time'):
             self.declare_parameter('use_sim_time', True)
         self.set_parameters([rclpy.parameter.Parameter('use_sim_time', value=True)])
@@ -78,7 +78,7 @@ class JointStatePublisher(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = JointStatePublisher()     # ✅ use this class, not WheelOdometryNode
+    node = JointStatePublisher()
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:

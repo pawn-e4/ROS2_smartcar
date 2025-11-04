@@ -65,7 +65,7 @@ class WheelOdometryNode(Node):
         # Quaternion from yaw
         q = tf_transformations.quaternion_from_euler(0, 0, self.yaw)
 
-        # TF: odom → base_footprint (enabled by default; can be disabled if EKF should own it)
+        # TF: odom → base_footprint (enabled by default)
         if self.broadcast_tf:
             t = TransformStamped()
             t.header.stamp = current_time.to_msg()

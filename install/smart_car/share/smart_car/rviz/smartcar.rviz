@@ -6,11 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /RobotModel1
-        - /Map1
         - /Map1/Topic1
-        - /Odometry1
-        - /LaserScan1
       Splitter Ratio: 0.5
     Tree Height: 549
   - Class: rviz_common/Selection
@@ -169,25 +165,24 @@ Visualization Manager:
       Show Names: false
       Tree:
         map:
-          {}
-        odom:
-          base_footprint:
-            base_link:
-              chassis_link:
-                back_left_wheel_link:
-                  {}
-                back_right_wheel_link:
-                  {}
-                front_left_steer_link:
-                  front_left_wheel_link:
+          odom:
+            base_footprint:
+              base_link:
+                chassis_link:
+                  back_left_wheel_link:
                     {}
-                front_right_steer_link:
-                  front_right_wheel_link:
+                  back_right_wheel_link:
                     {}
-                imu_link:
+                  front_left_steer_link:
+                    front_left_wheel_link:
+                      {}
+                  front_right_steer_link:
+                    front_right_wheel_link:
+                      {}
+                  imu_link:
+                    {}
+                sllidar_base_link:
                   {}
-              sllidar_base_link:
-                {}
       Update Interval: 0
       Value: true
     - Alpha: 0.699999988079071
@@ -228,7 +223,7 @@ Visualization Manager:
           Scale: 1
           Value: true
         Value: true
-      Enabled: false
+      Enabled: true
       Keep: 100
       Name: Odometry
       Position Tolerance: 0.10000000149011612
@@ -249,7 +244,7 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /odometry/filtered
-      Value: false
+      Value: true
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
@@ -330,7 +325,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 12.369545936584473
+      Distance: 6.977403163909912
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -345,10 +340,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.6403982043266296
+      Pitch: 0.6153980493545532
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.5222222805023193
+      Yaw: 3.6953988075256348
     Saved: ~
 Window Geometry:
   Displays:
@@ -366,5 +361,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1200
-  X: 173
-  Y: 37
+  X: 118
+  Y: 49

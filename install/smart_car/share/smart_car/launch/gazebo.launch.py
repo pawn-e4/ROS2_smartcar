@@ -18,7 +18,7 @@ def generate_launch_description():
 
     # ---- Args
     world_arg = DeclareLaunchArgument('world', default_value=world_file)
-    spawn_arg = DeclareLaunchArgument('spawn_robot', default_value='true')  # set false if your world already contains the robot
+    spawn_arg = DeclareLaunchArgument('spawn_robot', default_value='true')  
 
     # ---- Gazebo (server+client)
     gazebo = IncludeLaunchDescription(
@@ -31,7 +31,7 @@ def generate_launch_description():
     set_sim_time        = SetParameter(name='use_sim_time', value=True)
     set_robot_desc_param= SetParameter(name='robot_description', value=robot_description)
 
-    # ---- One robot_state_publisher (only one place publishes /robot_description to RViz)
+    # ---- One robot_state_publisher
     robot_state_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
@@ -40,7 +40,7 @@ def generate_launch_description():
         parameters=[{'use_sim_time': True, 'robot_description': robot_description}],
     )
 
-    # ---- Conditionally spawn the robot into Gazebo (if world doesn’t already spawn it)
+    # ---- Conditionally spawn the robot into Gazebo
     def maybe_spawn_robot(context, *args, **kwargs):
         spawn_flag = LaunchConfiguration('spawn_robot').perform(context).lower()
         if spawn_flag in ('true', '1', 'yes', 'on'):
@@ -54,7 +54,7 @@ def generate_launch_description():
 
     spawn_entity_group = OpaqueFunction(function=maybe_spawn_robot)
 
-    # ---- RViz delayed start
+    # ---- RViz start
     rviz = TimerAction(
         period=3.0,
         actions=[Node(

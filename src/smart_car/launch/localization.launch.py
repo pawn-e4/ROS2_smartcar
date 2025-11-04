@@ -17,11 +17,10 @@ def generate_launch_description():
             {'use_sim_time': True}
         ],
         emulate_tty=True,
-        # If your plugin publishes vehicle status on a different topic, uncomment & adjust:
-        # remappings=[('/smart_car/vehicle_status', '/vehicle_status')],
+        
     )
 
-    # Your joint state publisher node (from smart_car/scripts/joint_state_publisher.py)
+    # Joint state publisher node (from smart_car/scripts/joint_state_publisher.py)
     joint_state_pub = Node(
         package='smart_car',
         executable='joint_state_publisher',
@@ -37,7 +36,7 @@ def generate_launch_description():
         name='ekf_local',
         output='screen',
         parameters=[ekf_config, {'use_sim_time': True}]
-        # Do NOT remap odometry/filtered -> /odom; wheel odom already covers TF + odom topic
+        
     )
 
     return LaunchDescription([

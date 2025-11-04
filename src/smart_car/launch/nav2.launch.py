@@ -29,31 +29,24 @@ def generate_launch_description():
         convert_types=True
     )
 
-    localization_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(pkg_share, 'launch', 'localization.launch.py')
-        )
-    )
-
     bringup_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([
+        PythonLaunchDescriptionSource(
             os.path.join(
                 get_package_share_directory('nav2_bringup'),
                 'launch',
                 'bringup_launch.py'
             )
-        ]),
+        ),
         launch_arguments={
             'map': LaunchConfiguration('map'),
             'use_sim_time': 'True',
             'params_file': configured_params,
             'slam': 'False',
-            'autostart': 'True'   # ✅ This makes lifecycle nodes activate automatically
+            'autostart': 'True'
         }.items(),
     )
 
     return LaunchDescription([
         declare_map_arg,
-        localization_launch,
         bringup_launch
     ])

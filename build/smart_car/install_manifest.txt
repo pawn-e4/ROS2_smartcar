@@ -4,6 +4,7 @@
 /home/ros2/assignment/install/smart_car/share/smart_car/launch/smartcar.launch.py
 /home/ros2/assignment/install/smart_car/share/smart_car/launch/localization.launch.py
 /home/ros2/assignment/install/smart_car/share/smart_car/launch/gazebo.launch.py
+/home/ros2/assignment/install/smart_car/share/smart_car/launch/setup.launch.py
 /home/ros2/assignment/install/smart_car/share/smart_car/launch/localization.launch.py
 /home/ros2/assignment/install/smart_car/share/smart_car/launch/smartcar.launch.py
 /home/ros2/assignment/install/smart_car/share/smart_car/launch/nav2.launch.py

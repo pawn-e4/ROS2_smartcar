@@ -3,6 +3,7 @@ from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from ament_index_python.packages import get_package_share_directory
+from nav2_common.launch import RewrittenYaml
 import os
 
 def generate_launch_description():
@@ -16,20 +17,32 @@ def generate_launch_description():
         description='Full path to map yaml file to load'
     )
 
+    params_substitutions = {
+        'use_sim_time': 'True',
+        'yaml_filename': LaunchConfiguration('map')
+    }
+
+    configured_params = RewrittenYaml(
+        source_file=nav2_config,
+        root_key='',
+        param_rewrites=params_substitutions,
+        convert_types=True
+    )
+
     bringup_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([
+        PythonLaunchDescriptionSource(
             os.path.join(
                 get_package_share_directory('nav2_bringup'),
                 'launch',
                 'bringup_launch.py'
             )
-        ]),
+        ),
         launch_arguments={
             'map': LaunchConfiguration('map'),
             'use_sim_time': 'True',
-            'params_file': nav2_config,
+            'params_file': configured_params,
             'slam': 'False',
-            'autostart': 'True'   # ✅ This makes lifecycle nodes activate automatically
+            'autostart': 'True'
         }.items(),
     )
 
