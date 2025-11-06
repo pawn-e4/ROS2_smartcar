@@ -158,7 +158,7 @@ Visualization Manager:
           Value: true
         sllidar_base_link:
           Value: true
-      Marker Scale: 1
+      Marker Scale: 0.25
       Name: TF
       Show Arrows: true
       Show Axes: true
@@ -325,7 +325,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 6.977403163909912
+      Distance: 3.9158935546875
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
